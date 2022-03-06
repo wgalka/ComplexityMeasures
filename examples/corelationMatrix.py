@@ -2,16 +2,16 @@
 https://pl.wikipedia.org/wiki/Macierz_korelacji"""
 
 # Zaimportowanie pakietu pandas
-import pandas as pd
+import numpy as np
 from sklearn import datasets as data
-
-
 
 # Wczytanie danych ASTMA
 # X = pd.read_csv(r'C:\UR\ASTMA\mikromacierze.csv', ';', decimal=',').iloc[:, 2:]
 
 # Wczytanie przykładowych danych
 X, y = data.load_digits(n_class=2, return_X_y=True, as_frame=True)
+# Jeśli w jakijś kolumnie pojawią się same 0 wtedy otzymamy wartośći nan
+X = X.iloc[:, 1:4]
 print(X)
 
 # Macierz korelacji można wykonać tylko dla danych numerycznych
@@ -26,6 +26,14 @@ print(X.dtypes)
 corrMatrix = X.corr('spearman')
 print(corrMatrix)
 
-# Obliczanie min, max, avg
+## Obliczanie min, max, avg
 n_cols = corrMatrix.shape[1]
-
+# Stworzenie maski odrzucającej jedynki na przekątnej
+mask = np.eye(n_cols, dtype=bool)
+m_corrMatrix = np.ma.masked_array(data=corrMatrix, mask=mask)
+print(m_corrMatrix)
+corr_min = np.nanmin(m_corrMatrix)
+corr_max = np.nanmax(m_corrMatrix)
+corr_avg = np.nanmean(m_corrMatrix)
+corr_std = np.nanstd(m_corrMatrix)
+print('min:', corr_min, "\nmax: ", corr_max, '\navg:', corr_avg, '\nstd:', corr_std)
