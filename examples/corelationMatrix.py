@@ -26,7 +26,7 @@ print(X.dtypes)
 corrMatrix = X.corr('spearman')
 print(corrMatrix)
 
-## Obliczanie min, max, avg
+## Obliczanie min, max, avg, std
 n_cols = corrMatrix.shape[1]
 # Stworzenie maski odrzucającej jedynki na przekątnej
 mask = np.eye(n_cols, dtype=bool)
@@ -36,4 +36,11 @@ corr_min = np.nanmin(m_corrMatrix)
 corr_max = np.nanmax(m_corrMatrix)
 corr_avg = np.nanmean(m_corrMatrix)
 corr_std = np.nanstd(m_corrMatrix)
-print('min:', corr_min, "\nmax: ", corr_max, '\navg:', corr_avg, '\nstd:', corr_std)
+# https://pl.wikipedia.org/wiki/Wsp%C3%B3%C5%82czynnik_zmienno%C5%9Bci
+corr_V = corr_std / corr_avg
+print(f'''\
+min: {corr_min} 
+max: {corr_max}
+avg: {corr_avg}
+std: {corr_std}
+V:   {corr_V}''')
