@@ -5,6 +5,8 @@
 import numpy as np
 from sklearn import datasets as data
 
+from statslib.statslib import statslib
+
 # Wczytanie danych ASTMA
 # X = pd.read_csv(r'C:\UR\ASTMA\mikromacierze.csv', ';', decimal=',').iloc[:, 2:]
 
@@ -16,9 +18,10 @@ print(X)
 
 # Obiczenie współczynników zmiennośći
 # Co w sytuacji gdy odchylenie jest bardzo wysokie?
+
 coeff = []
 for col_name in X.columns:
-    coeff.append((np.nanstd(X[col_name]) / np.nanmean(X[col_name])))
+    coeff.append(statslib.coeff(X[col_name]))  # TODO Optymalizacja impotru pakietów
 print(coeff)
 
 ## Obliczanie min, max, avg, std
