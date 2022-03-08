@@ -17,7 +17,7 @@ X, y = data.load_digits(n_class=2, return_X_y=True, as_frame=True)
 X = X.iloc[:, 0:5]
 print(X)
 
-# Obiczenie współczynników asymetrii
+# Obiczenie kurtoz
 curtosis = []
 for col_name in X.columns:
     curtosis.append(kurtosis(X[col_name]))
