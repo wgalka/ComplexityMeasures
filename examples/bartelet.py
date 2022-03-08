@@ -14,10 +14,12 @@ X, y = data.load_digits(n_class=2, return_X_y=True, as_frame=True)
 X = X.iloc[:, 1:5]
 print(X)
 
-args = []
-for col in X.columns:
-    args.append(X[col])
+# Lista zawierająca kolumny by możliwe było użycie operatora * w celu użycia jej jako parametr
+args = [X[col] for col in X.columns]
 
 # Obliczenie testu barteleta
-statisctic, pvalue = bartlett(*args)
-print(statisctic, pvalue)
+statistic, pvalue = bartlett(*args)
+print(f'''\
+statistic: {statistic}
+pvalue: {pvalue}\
+''')

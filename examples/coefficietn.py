@@ -18,10 +18,7 @@ print(X)
 
 # Obiczenie współczynników zmiennośći
 # Co w sytuacji gdy odchylenie jest bardzo wysokie?
-
-coeff = []
-for col_name in X.columns:
-    coeff.append(statslib.coeff(X[col_name]))  # TODO Optymalizacja impotru pakietów
+coeff = X.apply(statslib.coeff)
 print(coeff)
 
 ## Obliczanie min, max, avg, std

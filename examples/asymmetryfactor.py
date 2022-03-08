@@ -17,9 +17,7 @@ X = X.iloc[:, 1:5]
 print(X)
 
 # Obiczenie współczynników asymetrii
-asymmetry = []
-for col_name in X.columns:
-    asymmetry.append(statslib.assymetryfactor(X[col_name]))
+asymmetry = X.apply(statslib.assymetryfactor)
 print(asymmetry)
 
 ## Obliczanie min, max, avg, std

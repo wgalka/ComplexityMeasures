@@ -3,7 +3,7 @@ import numpy as np
 
 # coefficient facor https://pl.wikipedia.org/wiki/Wsp%C3%B3%C5%82czynnik_zmienno%C5%9Bci
 def coeff(X):
-    return np.nanstd(X) / np.nanmean(X)
+    return np.std(X, ddof=1) / np.mean(X) * 100
 
 
 # Assymetry factor https://pl.wikipedia.org/wiki/Wsp%C3%B3%C5%82czynnik_asymetrii
@@ -26,4 +26,4 @@ def assymetryfactor(X):
 
 def kurtosis(X):
     std_ = np.nanstd(X)
-    return (std_**4)
+    return (std_ ** 4)

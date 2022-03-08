@@ -4,9 +4,8 @@
 
 # Zaimportowanie pakietu pandas
 import numpy as np
-from sklearn import datasets as data
 from scipy.stats import kurtosis
-from statslib.statslib import statslib
+from sklearn import datasets as data
 
 # Wczytanie danych ASTMA
 # X = pd.read_csv(r'C:\UR\ASTMA\mikromacierze.csv', ';', decimal=',').iloc[:, 2:]
@@ -18,18 +17,16 @@ X = X.iloc[:, 0:5]
 print(X)
 
 # Obiczenie kurtoz
-curtosis = []
-for col_name in X.columns:
-    curtosis.append(kurtosis(X[col_name]))
-print(curtosis)
+kurtosis = X.apply(kurtosis)
+print(kurtosis)
 
 ## Obliczanie min, max, avg, std
-curtosis_min = np.nanmin(curtosis)
-curtosis_max = np.nanmax(curtosis)
-curtosis_avg = np.nanmean(curtosis)
-curtosis_std = np.nanstd(curtosis)
+kurtosis_min = np.nanmin(kurtosis)
+kurtosis_max = np.nanmax(kurtosis)
+kurtosis_avg = np.nanmean(kurtosis)
+kurtosis_std = np.nanstd(kurtosis)
 print(f'''\
-min: {curtosis_min} 
-max: {curtosis_max}
-avg: {curtosis_avg}
-std: {curtosis_std}''')
+min: {kurtosis_min} 
+max: {kurtosis_max}
+avg: {kurtosis_avg}
+std: {kurtosis_std}''')
