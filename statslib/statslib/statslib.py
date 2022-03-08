@@ -22,3 +22,8 @@ def assymetryfactor(X):
     # Obliczenie odchylenia standardowego
     std = np.nanstd(X)
     return sum_ / (std ** 3)
+
+
+def kurtosis(X):
+    std_ = np.nanstd(X)
+    return (std_**4)
