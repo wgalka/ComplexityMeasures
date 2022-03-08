@@ -10,11 +10,11 @@ from scipy.stats import shapiro
 
 # Wczytanie przykładowych danych
 X, y = data.load_digits(n_class=2, return_X_y=True, as_frame=True)
-# Jeśli w jakijś kolumnie pojawią się same 0 wtedy otzymamy wartośći nan
-X = X.iloc[:, 1:5]
+# Wybranie odpowiednich kolumn ze zbioru danych
+X = X.iloc[:, 0:5]
 print(X)
 
-# Test Shapiro-wilika
+# Test Shapiro-wilka
 statistic, pvalue = shapiro(X)
 
 print(f'''\
