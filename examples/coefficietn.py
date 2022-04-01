@@ -5,7 +5,7 @@
 import numpy as np
 from sklearn import datasets as data
 
-from statslib.statslib import statslib
+from complexitymeasures.stats import statslib
 
 # Wczytanie danych ASTMA
 # X = pd.read_csv(r'C:\UR\ASTMA\mikromacierze.csv', ';', decimal=',').iloc[:, 2:]
